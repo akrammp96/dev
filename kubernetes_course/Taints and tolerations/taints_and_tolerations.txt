@@ -1,0 +1,44 @@
+The concept of taints and tolerations: 
+
+analogy of a bug approaching a person. To prevent the bug from landing on the person,
+
+we spray the person with a repellent spray The bug is intolerant to the smell
+
+so on approaching the person
+
+the taint applied on the person throws the bug off. However, there could be other bugs
+
+that are tolerant to the smell,and so the taint doesn't really affect them and so they end up landing on the person.
+
+
+
+Now in Kubernetes:
+
+the person is a node and the bugs are pods.
+Now, taints and tolerations have nothing to do with security or intrusion on the cluster.
+Taints and tolerations are used to set restrictions on what pods can be scheduled on a node.
+
+The scheduler tries to place pod A on node one,
+
+but due to the taint it is thrown off
+
+and it goes to node two.
+
+The scheduler then tries to place pod B on node one,
+
+but again, due to the taint it is thrown off
+
+and is placed on node three
+
+
+command to add taint to a node: 
+kubectl taint nodes node-name key=value:taint-effect
+
+taint-effects are: 
+-- NoSchedule : pods will not be scheduled on the node.
+-- PreferNoSchedule : not garanted that a the pod is not placed in that node.
+-- NoExecute : new pods will be scheduled on the node and existing pods will be evicted.
+
+example: 
+kubectl taint nodes node1 app= blue:NoSchedule
+=====> see the yaml file
