@@ -42,3 +42,12 @@ taint-effects are:
 example: 
 kubectl taint nodes node1 app= blue:NoSchedule
 =====> see the yaml file
+
+
+HINT: 
+CREATE A POD FROM COMMAND: 
+kubectl run <podName> --image=<ImageName>
+kubectl run pod1 --image=nginx 
+
+REMOVE TAINT FROM NODE: 
+kubectl taint node <nodeName> <key, keyValue, keyEffect>
