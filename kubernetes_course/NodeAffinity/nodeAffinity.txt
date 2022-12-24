@@ -1,0 +1,13 @@
+______Node Affinity______
+
+___Why ?__
+
+The primary purpose of node affinity feature is to ensure
+that pods are hosted on particular nodes.
+
+____What is the plus compared to nodes selectors ? ____
+
+We discussed that you cannot provide advanced
+expressions like or or not with node selectors.
+The node affinity feature provides us with advanced
+capabilities to limit pod placement on specific notes.

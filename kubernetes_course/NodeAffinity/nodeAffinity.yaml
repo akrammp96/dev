@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: disktype
+            operator: In ## we could have (NotIn, Exists) too.
+            values:
+            - ssd            
+  containers:
+  - name: nginx
+    image: nginx
+    imagePullPolicy: IfNotPresent
+
+
+
+Three types of nodes affinity: 
+- requiredDuringSchedulingIgnoredDuringExecution
+## during Scheduling means when scheduling the new pods for the first time.
+## during Execution means for the existing running pods.
+- preferredDuringSchedulingIgnoredDuringExecution
+- requiredDuringSchedulingRequiredDuringExecution
+
+
+
+
+/tmp/kubectl-edit-4188829159.yaml

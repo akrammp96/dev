@@ -11,3 +11,8 @@ spec:
     operator: "Equal"
     value: "blue"
     effect: "NoSchedule"
+
+
+
+kubectl taint nodes node1 key1=value1:NoSchedule
+kubectl taint nodes node1 key1=value1:NoSchedule-
