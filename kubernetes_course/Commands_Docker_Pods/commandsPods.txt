@@ -1,0 +1,15 @@
+____How to pass the arguments to docker container ??____
+
+As said in the dockerfile commands doc, the CMD could be changed
+
+with docker run now with the pod definition we can specify 
+
+the args when running the container from a specified image. 
+
+
+To modify the ENTRYPOINT we should use: 
+command: ["<command>"]
+
+
+
+

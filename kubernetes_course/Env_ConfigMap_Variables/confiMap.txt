@@ -1,0 +1,29 @@
+____what are configMaps____
+
+ConfigMaps are used to pass configuration data
+
+in the form of key value pairs in Kubernetes.
+
+When a pod is created, inject the ConfigMap into the pod
+
+so the key value pairs are available
+
+as environment variables for the application hosted
+
+inside the container in the pod.
+
+====> First, create the ConfigMap
+
+====> and second, inject them into the pod.
+
+__________Imperative way to declare a configMap: 
+
+kubectl create configMap app-config --from-literal=APP_COLOR=blue
+                                    --from-literal=APP_MOD=prod
+From a file: 
+
+kubectl create configMap app-config --from-file=app_config.properties
+
+
+__________Declarative way
+kubectl create -f conf.yaml

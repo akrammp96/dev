@@ -26,7 +26,3 @@ Three types of nodes affinity:
 - preferredDuringSchedulingIgnoredDuringExecution
 - requiredDuringSchedulingRequiredDuringExecution
 
-
-
-
-/tmp/kubectl-edit-4188829159.yaml

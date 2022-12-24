@@ -1,0 +1,22 @@
+___How to set an env variable____
+
+To set an environment variable,
+
+use the env property.
+
+Env is an array.
+
+So every item under the env property starts with a dash,
+
+indicating an item in the array.
+
+Each item has a name and a value property.
+
+env:
+ - name: APP_COLOR
+   value: blue
+ - name: APP_PORT
+   value: 8002
+
+
+===========> Other ways to set values: configMaps

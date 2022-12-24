@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ubuntu-sleeper-pod
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    command: ["sleep2.0"]
+    args: ["10"]
+
+
+
+_______REMINDER________
+kubectl get pod webapp -o yaml > my-new-pod.yaml
+kubectl create -f my-new-pod.yaml
+
+kubectl edit deployment my-deployment
+

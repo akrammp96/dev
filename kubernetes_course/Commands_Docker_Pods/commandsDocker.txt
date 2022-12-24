@@ -1,0 +1,58 @@
+___Key definition about docker containers__
+
+containers are not meant to host an operating system.
+
+Containers are meant to run a specific task or process,
+
+such as to host an instance of a web server,
+or application server or a database,
+or simply to carry out some kind of computation or analysis.
+
+____why  ubuntu doesnt run as a docker container____
+
+Docker created a container from the Ubuntu image, and launched the BASH program.
+
+By default, Docker does not attach a terminal
+to a container when it is run,
+and so the Bash program does not find a terminal,
+and so it exits.
+
+docker run ubuntu [command] 
+docker run ubuntu sleep 5
+
+    OR
+
+We could use the docker image
+
+
+___Difference CMD and ENTRYPOINT____
+
+ we shouldn't have to specify the sleep command again.
+
+Instead, we would like it to be something like this.
+
+Docker run Ubuntu Sleeper 10.
+
+We only want to pass in the number
+
+of seconds the container should sleep,
+
+and sleep command should be invoked automatically,
+
+and that is where the entry point instruction comes
+
+into play.
+
+ENTRYPOINT ["sleep"]
+CMD ["5"]
+
+--- > docker run ubuntu-sleeper 10
+
+
+______The other difference ???_____
+CMD ["sleep", "5"]
+docker run ubuntu-sleeper sleep 10 
+---> This will overides the CMD command. 
+but if we choose to put ENTRYPOINT then we'll force sleep 5
+and docke run ubuntu-sleeper sleep 10 wont change the actual
+command. 
