@@ -1,0 +1,68 @@
+###Security in Docker 
+
+a host with Docker installed on it.
+This host has a set of its own processes running
+
+The host has a name space
+and the containers have their own name space.
+
+
+____HINT_____
+We have learned that unlike virtual machines
+
+containers are not completely isolated from their host.
+
+Containers and the hosts share the same kernel.
+
+Containers are isolated using name spaces in Linux.
+
+___Containers processes___
+All the processes run by the containers are
+in fact run on the host itself,
+but in their own name space
+
+
+Each process in the host have its own process id (PID).
+===> process isolation.
+
+
+
+
+### Security docker users: 
+
+By default, Docker runs processes within containers as the root user.
+We can change this by setting the USER in dockerfile.
+Example: 
+FROM ubuntu 
+USER 1000
+
+--------- The root user within the container isn't really like the root user on the host.
+--------- Docker use linux capabilities to set the user restrictions and what he can really do.
+--------- By default, Docker runs a container with a limited set of capabilities
+
+and so the processes running within the container do not have the privileges to say,
+
+reboot the host or perform operations that can disrupt the host or other containers.
+
+to OVERRIDE we can use: 
+docker run --cap-add MAC_ADMIN ubuntu
+to DROP priveleage we can use: 
+docker run --cap-drop MAC_ADMIN ubuntu
+with all privelagies enabled:
+docker run --privileged ubuntu
+
+
+###Security in pods
+
+________If you configure it at a pod level,
+
+the settings will carry-over to all the containers
+
+within the pod.
+
+________If you configure it at both the pod and the container,
+
+the settings on the container will override
+
+the settings on the pod.
+
