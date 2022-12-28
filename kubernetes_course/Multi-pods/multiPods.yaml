@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: yellow
+  labels: 
+   name: yellow
+spec:     
+  containers:
+  - name: lemon
+    image: busybox
+    ports: 
+     - containerPort: 8080
+  - name: gold
+    image: redis
+
+
+
+see logs inside container with:
+
+k logs app -n elastic-stack
+
+k -n elastic-stack exec -it app --cat /log/app.log
+
+k replace --force -f /tmp/ku-tmp.yaml
