@@ -1,0 +1,48 @@
+_______how to do monitoring in kubernetes?______ 
+
+ the number of nodes in the cluster,
+
+how many of them are healthy,
+
+as well as performance metrics,
+
+such as CPU, memory, network and disc utilization;
+
+as well as pod level metrics,
+
+such as the number of pods
+
+and the performance metrics of each pod,
+
+such as the CPU and memory consumption on them.
+
+
+_____________________________________________
+we need a solution that will monitor these metrics,
+store them, and provide analytics around this data
+
+
+Kubernetes does not come 
+with a full featured built-in monitoring solution.
+
+_____________The metrics server ? ______________
+
+The Metrics Server retrieves metrics
+from each of the Kubernetes nodes and pods,
+aggregates them and stores them in memory.
+
+Kubernetes runs an agent on each node, known as the Kubelet,
+which is responsible for receiving instructions
+from the Kubernetes API master server.
+
+
+_______________________________________________
+The Kubelet also contains a sub component
+known as the cAdvisor or Container Advisor.
+cAdvisor is responsible for retrieving
+performance metrics from pods
+and exposing them through the Kubelet API
+
+
+kubectl top node
+kubectl top pod

@@ -1,0 +1,16 @@
+
+____how to get containers logs_____
+In this case, I modify my pod definition file
+
+to include an additional container called image processor.
+
+If you run the Kube control logs command now
+
+with the pod name, which container's logs would it show?
+____________________________________________________________
+
+
+To get a specific container logs:
+
+kubectl logs -f <pod_name> <container_name>
+kubectl logs -f event-simulator-pod event-simulator

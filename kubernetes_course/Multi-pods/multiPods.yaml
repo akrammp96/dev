@@ -10,8 +10,14 @@ spec:
     image: busybox
     ports: 
      - containerPort: 8080
+    volumeMounts:
+    - mountPath: /var/log/event-simulator
+      name: log-volume
   - name: gold
     image: redis
+    volumeMounts:
+    - mountPath: /log
+      name: log-volume
 
 
 

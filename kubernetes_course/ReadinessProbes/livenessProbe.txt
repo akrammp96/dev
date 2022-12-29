@@ -1,0 +1,8 @@
+_____what is Liveness probe ? _____
+
+the creation of the Liveness probe is the same as readiness probe
+but here A liveness probe can be configured on the container
+
+to periodically test whether the application
+within the container is actually healthy.
+

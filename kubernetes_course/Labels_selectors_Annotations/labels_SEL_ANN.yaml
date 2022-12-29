@@ -1,0 +1,36 @@
+# POD 
+apiVersion: v1
+kind: Pod
+metadata:
+  name: simple-webapp
+  labels:
+    app: App1 
+    function: Front_end
+
+
+# SELECTORS
+k get pods --selector app=App1
+
+
+# REPLICASET
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: frontend
+  labels:
+    app: guestbook
+    tier: frontend
+spec:
+  # modify replicas according to your case
+  replicas: 3
+  selector:
+    matchLabels:
+      name: frontend
+  template:
+    metadata:
+      labels:
+        tier: Front_end
+    spec:
+      containers:
+      - name: php-redis
+        image: gcr.io/google_samples/gb-frontend:v3

@@ -1,0 +1,49 @@
+_________WHY labels, selectors and annotations ?_________
+
+___Labels are properties attached to each item.
+
+So you add properties to each item for their class, kind and color.
+
+___Selectors help you filter these items.
+
+For example, when you say class equals mammal, we get a list
+
+of mammals
+
+_______In kubernetes_____
+
+In a pod definition file, under Metadata,
+
+create a section called Labels.
+
+Under that, add the labels in a key value format like this.
+
+You can add as many labels as you like.
+
+Once the pod is created, to select the pod with the labels,
+
+use the cube control; get pods command,
+
+along with the selector option,
+
+and specify the condition like app equals app one.
+
+
+
+____NOTE !!!!
+
+In a replica set definition file,
+
+you will see labels defined in two places.
+
+Note that this is an area where beginners tend
+
+to make a mistake.
+
+The labels defined under the template section
+
+are the labels configured on the pods.
+
+The labels you see at the top are the labels
+
+of the replica set itself.

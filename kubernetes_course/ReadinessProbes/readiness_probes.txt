@@ -1,0 +1,143 @@
+____What is readiness probes ?____
+
+A pod has a pod status, and some conditions.
+
+The pod status tells us where the pod is in its lifecycle.
+
+When a pod is first created,
+
+it is in a pending state.
+
+This is when the scheduler tries
+
+to figure out where to place the pod.
+
+If the scheduler cannot find the node
+
+to place the pod, it remains in a pending state.
+
+
+_____________________________________________________________
+However, at times, you may want additional information.
+
+Conditions complement pod status.
+
+It is an array of true or false values
+
+that tell us the state of a pod.
+
+When a pod is scheduled on a node,
+
+the pod scheduled condition is set to true.
+
+When the pod is initialized,
+
+its value is set to true.
+
+We know that a pod has multiple containers.
+
+When all the containers in the pod are ready,
+
+the container's ready condition is set to true.
+
+And finally, the pod itself is considered to be ready.
+______________________________________________________________
+
+
+
+________________________________________________________
+The containers could be running different kinds
+
+of applications in them.
+
+It could be a simple script that performs the job.
+
+It could be a database service or a large web server
+
+serving front end users.
+
+The script may take a few milliseconds to get ready.
+
+The database service may take a few seconds to power up.
+
+Some web servers could take several minutes to warm up.
+
+If you try to run an instance of a Jenkins server,
+
+you will notice that it takes about 10 to 15 seconds
+
+for the server to initialize
+
+before a user can access the web UI.
+
+Even after the web UI is initialized,
+
+it takes a few seconds for the server to warm up
+
+and be ready to serve users.
+_________________________________________________________
+
+_________________________________________________________
+where you create a pod and expose it to external users
+
+using a service.
+
+The service will route traffic to the pod immediately.
+
+The service relies on the pod's ready condition
+
+to route traffic.
+
+By default, Kubernetes assumes
+
+that as soon as the container is created,
+
+it is ready to serve user traffic.
+
+So it sets the value after ready condition
+
+for each container to true.
+
+But if the application within the container took longer
+
+to get ready, the service is unaware of it
+
+and sends traffic through as a container
+
+is already in a ready state,
+
+causing users to hit a pod
+
+that isn't yet running a live application.
+_________________________________________________________
+
+
+_____How to define readiness probes ?______
+In the pod definition file,
+
+add a new field called readiness probe
+
+and use the HTTP get option.
+
+Specify the port and the ready API.
+
+Now when the container is created,
+
+Kubernetes does not immediately set the ready condition
+
+on the container to true.
+
+Instead, it performs a test
+
+to see if the API responds positively.
+
+Until then, the service does not forward any traffic
+
+to the pod as it sees that the pod is not ready.
+
+
++++++++++++++++++++++For HTTP, use the HTTP get option
+with the path and the port.
+
++++++++++++++++++++++For TCP, use the TCP socket option with the port.
+And for executing a command, specify the exec option with the command
