@@ -1,0 +1,55 @@
+_____what are rollouts . ______
+
+When you first create a deployment, it triggers a rollout.
+A new rollout creates a new deployment revision.
+
+In the future when the application is upgraded,
+meaning when the container version is updated to a new one,
+a new rollout is triggered.
+
+This helps us keep track of the changes
+made to our deployment and enables us to rollback
+to a previous version of deployment if necessary.
+
+check status: 
+kubectl rollout status deployment/myapp-deployment
+
+There are two strategies to make a deployment rollout: 
+1- Rolling update :  bring up a newer version one by one.
+2- Recreate strategy
+
+the default one is the Rolling update 
+
+
+Update: 
+kubectl apply -f deployment1.yaml
+or
+kubectl set image deployment/myapp-deployment nginx=nginx:1.9.1
+
+Undo with:
+kubectl rollout undo deployment/myapp-deployment
+
+See history of rollouts: 
+kubectl rollout history deployment/myapp-deployment
+
+
+_____________________________________________________
+
+Updating a deployment: 
+
+Creating a deployment, checking the rollout status and history:
+You can check the status of each revision individually by using the --revision flag.
+
+--revision=
+
+kubectl rollout history deployment nginx --revision=1
+
+_______Using the --record flag:
+We can use the --record flag to save the command used to create/update a deployment 
+
+kubectl set image deployment nginx nginx=nginx:1.17 --record
+
+
+_____To rollback to specific revision we will use the --to-revision flag.
+
+kubectl rollout undo deployment nginx --to-revision=1
