@@ -13,6 +13,8 @@ spec:
     effect: "NoSchedule"
 
 
+____To delete a taint add (-)
+kubectl taint nodes <node-name> <taint-key>-
 
 kubectl taint nodes node1 key1=value1:NoSchedule
 kubectl taint nodes node1 key1=value1:NoSchedule-

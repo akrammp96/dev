@@ -9,7 +9,7 @@ spec:
   - name: simple-webapp
     image: simple-webapp
  nodeSelector:
- size: Large ## the label setted in the node
+  size: Large ## the label setted in the node
 
 
  ## command to add label to a node 

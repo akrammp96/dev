@@ -9,11 +9,97 @@ spec:
     command: ["sleep2.0"]
     args: ["10"]
 
+apiVersion: v1
+kind: Pod
+metadata:
+  name: webapp-green
+spec:
+  containers:
+  - name: webapp-green
+    image: kodekloud/webapp-color
+    args: ["--color", "green"]
+
 
 
 _______REMINDER________
 kubectl get pod webapp -o yaml > my-new-pod.yaml
 kubectl create -f my-new-pod.yaml
-
 kubectl edit deployment my-deployment
+kubectl get pods --namespace=dev
 
+kubectl run nginx --image=nginx
+kubectl describe pod nginx
+
+kubectl edit pod <pod-name> : command to edit pod properties.
+# just change the args
+kubectl run pod1 --image=nginx -- --color green
+#pass a command 
+kubectl run pod1 --image=nginx --comand -- python app2.py --color green
+
+
+_______Replicas_______
+how to scale ?
+kubectl scale --replicas=6 -f replicas_name.yaml
+kubectl replace -f replicas_name.yaml 
+
+kubectl delete replicaset replicas_name
+
+
+_______Deployments_______
+
+kubectl create deployment name_dep --image --replicas=3
+
+
+
+_______Namespaces_______
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: example-quota
+  namespace: dev
+spec:
+  hard:
+    cpu: "2"
+    memory: 4Gi
+    pods: "10"
+    services: "5"
+    configmaps: "20"
+    persistentvolumeclaims: "5"
+    replicationcontrollers: "3"
+    secrets: "10"
+    persistentvolumes: "2"
+
+In this example, the ResourceQuota is named "example-quota" and specifies limits on the following resources:
+
+    CPU: A maximum of 2 CPU units can be used.
+    Memory: A maximum of 4 gigabytes of memory can be used.
+    Pods: A maximum of 10 pods can be created.
+    Services: A maximum of 5 services can be created.
+    ConfigMaps: A maximum of 20 config maps can be created.
+    PersistentVolumeClaims: A maximum of 5 persistent volume claims can be created.
+    ReplicationControllers: A maximum of 3 replication controllers can be created.
+    Secrets: A maximum of 10 secrets can be created.
+    PersistentVolumes: A maximum of 2 persistent volumes can be created.
+
+
+
+
+
+
+_______Imperative commands_______
+
+
+kubectl run nginx --image=nginx
+
+------Generate POD Manifest YAML file (-o yaml). Don't create it(--dry-run)
+kubectl run nginx --image=nginx --dry-run=client -o yaml
+
+kubectl create deployment --image=nginx nginx
+kubectl create deployment nginx --image=nginx --replicas=4
+kubectl scale deployment nginx --replicas=4
+
+kubectl create deployment nginx --image=nginx--dry-run=client -o yaml > nginx-deployment.yaml
+
+
+----------Expose Pod redis on port 6379 with a clusterIp
+kubectl expose pod redis --port=6379 --name redis-service --dry-run=client -o yaml

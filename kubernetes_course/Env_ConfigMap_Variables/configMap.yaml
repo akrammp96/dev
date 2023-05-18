@@ -54,3 +54,26 @@ spec:
         name: special-config
   restartPolicy: Never
 
+
+
+
+
+
+
+_______________Config Map key ref_______________
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+spec:
+  containers:
+    - name: my-container
+      image: nginx
+      env:
+        - name: MY_VAR
+          valueFrom:
+            configMapKeyRef:
+              name: my-config
+              key: foo
+  restartPolicy: Never

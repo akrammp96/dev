@@ -47,3 +47,7 @@ are the labels configured on the pods.
 The labels you see at the top are the labels
 
 of the replica set itself.
+
+
+
+kubectl get pods --selector app=App1

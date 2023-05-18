@@ -13,3 +13,18 @@ command: ["<command>"]
 
 
 
+How to edit pods: 
+
+
+kubectl edit pod webapp
+
+kubectl delete pod webapp
+
+"after making changes"
+kubectl create -f /tmp/kubectl-edit-ccvrq.yaml
+
+
+Second way to do it
+kubectl get pod webapp -o yaml > my-new-pod.yaml
+vi my-new-pod.yaml
+

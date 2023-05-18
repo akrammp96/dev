@@ -8,10 +8,11 @@ spec:
       requiredDuringSchedulingIgnoredDuringExecution:
         nodeSelectorTerms:
         - matchExpressions:
-          - key: disktype
+          - key: size
             operator: In ## we could have (NotIn, Exists) too.
             values:
-            - ssd            
+            - large
+            - medium            
   containers:
   - name: nginx
     image: nginx
@@ -22,7 +23,7 @@ spec:
 Three types of nodes affinity: 
 - requiredDuringSchedulingIgnoredDuringExecution
 ## during Scheduling means when scheduling the new pods for the first time.
-## during Execution means for the existing running pods.
+## during Execution means for the existing running pods. for ignored means nothing will happen to the running pods if we change the key value of the node
 - preferredDuringSchedulingIgnoredDuringExecution
 - requiredDuringSchedulingRequiredDuringExecution
 

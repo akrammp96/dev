@@ -9,6 +9,10 @@ If you run the Kube control logs command now
 with the pod name, which container's logs would it show?
 ____________________________________________________________
 
+_____see docker logs_____
+docker logs -f ecf
+
+
 
 To get a specific container logs:
 
