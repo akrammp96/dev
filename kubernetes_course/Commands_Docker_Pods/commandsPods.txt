@@ -6,10 +6,8 @@ with docker run now with the pod definition we can specify
 
 the args when running the container from a specified image. 
 
-
 To modify the ENTRYPOINT we should use: 
 command: ["<command>"]
-
 
 
 
@@ -17,7 +15,6 @@ How to edit pods:
 
 
 kubectl edit pod webapp
-
 kubectl delete pod webapp
 
 "after making changes"

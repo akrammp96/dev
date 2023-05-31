@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service
+spec:
+  type: NodePort
+  selector:
+    app.kubernetes.io/name: MyApp
+  ports:
+      # By default and for convenience, the `targetPort` is set to the same value as the `port` field.
+    - port: 80
+      targetPort: 80
+      # Optional field
+      # By default and for convenience, the Kubernetes control plane will allocate a port from a range (default: 30000-32767)
+      nodePort: 30007
+
+
+A NodePort service is a type of service in Kubernetes that exposes the service on a specific port on each node in the cluster. 
+It enables external access to the service by mapping a specific port on the node's IP address to the service. 
+The NodePort service forwards traffic from the specified port on each node to the service.
+
+
+When to use Node Port?
+
+There are many downsides to this method
+You can only have one service per port
+You can only use ports 30,000-32,767
+
+If your Node/VM IP address change, you need to deal with that
+For these reasons, I don’t recommend using this method in production to directly expose your service. 
+If you are running a service that doesn’t have to be always available, or you are very cost-sensitive, 
+this method will work for you. A good example of such an application is a demo app or something temporary.
+
+https://media.geeksforgeeks.org/wp-content/uploads/20220104122845/42.PNG
+
+
+-- Deploy with a service with imperative commands --
+k expose deploy ingress-controller -n ingress-space --name ingress --port=80 --target-port=80 --type NodePort
+
+

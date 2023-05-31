@@ -1,0 +1,14 @@
+When an external request reaches a Kubernetes cluster, the following steps occur:
+
+
+1- The request first reaches the networking layer of the cluster, which can be an Ingress controller or a load balancer.
+
+2- The networking layer, which is responsible for routing and load balancing, examines the request's headers, including the requested host and path.
+
+3- Based on the request's host and path, the networking layer forwards the request to the appropriate backend service.
+
+4- The kubelet, running on the node where the backend service resides, receives the request.
+
+5- The kubelet then identifies the pod associated with the backend service based on the Service and Endpoint objects defined in Kubernetes.
+
+6- Once the pod is identified, the kubelet forwards the request to the corresponding container within the pod.

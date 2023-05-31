@@ -1,0 +1,42 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: myapp-ingress
+spec:
+  rules:
+    - host: example.com
+      http:
+        paths:
+          - path: /app
+            pathType: Prefix
+            backend:
+              service:
+                name: app-service
+                port:
+                  number: 80
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: api-service
+                port:
+                  number: 8080
+ 
+
+Request: http://example.com/app/home
+Result: The request will be forwarded to the "app-service" running on port 80.
+
+Request: http://example.com/api/users
+Result: The request will be forwarded to the "api-service" running on port 8080.
+
+The Ingress resource defines the routing rules based on the incoming request's hostname and path. 
+The Nginx Ingress Controller reads the Ingress resource, configures Nginx accordingly, 
+and routes the incoming traffic to the appropriate backend services based on the defined rules.
+
+k create ingress ingress-test
+
+Imperative command to create an ingress resource:
+$ kubectl create ingress myapp-ingress --rule=alspeech.dev.algobrain.ai/history=alspeech-transcription-manager:80 
+--rule=alspeech.dev.algobrain.ai/analytics=alspeech-analytics:81
+
+

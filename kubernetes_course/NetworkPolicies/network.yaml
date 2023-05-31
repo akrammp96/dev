@@ -1,0 +1,66 @@
+Network Policies in Kubernetes are a set of rules that control the traffic flow between 
+different pods or namespaces in the cluster. They provide a way to enforce network segmentation 
+and isolation by specifying which pods are allowed to communicate with each other based on defined 
+criteria such as IP addresses, ports, and protocols.
+
+
+-- Create network policy using yaml file --
+
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: my-network-policy
+spec:
+  podSelector:
+    matchLabels:
+      app: my-app
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              role: backend
+      ports:
+        - protocol: TCP
+          port: 8080
+
+
+In this example, we define a Network Policy named "my-network-policy". 
+It selects pods with the label app: my-app as the target. It allows ingress 
+traffic from pods with the label role: backend on port 8080 using the TCP protocol.
+
+k apply -f policy.yaml
+
+
+Using imperative command : 
+kubectl create networkpolicy my-network-policy --namespace=space1 --pod-selector=app=my-app --ingress-from=pod-selector=role=backend 
+--ingress-protocol=TCP --ingress-port=8080
+
+
+k get networkpolicy 
+
+
+
+-- Create network policy with ip block --
+
+the ipBlock field allows you to specify a range of IP addresses or a single IP address as a source or destination in the network policy rules. 
+It provides a way to define rules based on specific IP blocks.
+
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: my-network-policy
+spec:
+  podSelector:
+    matchLabels:
+      app: my-app
+  ingress:
+    - from:
+        - ipBlock:
+            cidr: 10.0.0.0/24
+      ports:
+        - protocol: TCP
+          port: 8080
+
+In this example, we define a Network Policy named "my-network-policy" that selects pods with the label app: my-app. 
+It allows ingress traffic from the IP block 10.0.0.0/24 on port 8080 using the TCP protocol. This means that only traffic originating 
+from IP addresses within the specified IP block will be allowed to access the pods matching the pod selector

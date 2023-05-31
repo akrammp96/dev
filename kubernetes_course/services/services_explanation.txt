@@ -1,0 +1,63 @@
+Kubernetes services enable communication between various components within
+and outside of the application. Kubernetes services helps us connect applications together with other applications or users.
+
+
+-NodePort-
+
+The Kubernetes service is an object just
+
+like pods, ReplicaSet, or deployments
+
+that we worked with before.
+
+One of its use case is to listen
+
+to a port on the node and forward request on that port
+
+to a port on the pod running the web application.
+
+This type of service is known
+
+as a NodePort service because the service listens
+
+to a port on the node and forward request to the pods.
+
+
+
+-ClusterIp-
+
+The second is ClusterIP, and in this case
+
+the service creates a virtual IP
+
+inside the cluster to enable communication
+
+between different services, such as a set
+
+of front-end servers to a set of back-end servers.
+
+
+
+The pods all have an IP address assigned to them
+
+as we can see on the screen.
+
+But these IPs, as we know, are not static.
+
+These pods can go down any time
+
+and new pods are created all the time,
+
+and so you cannot rely on these IP addresses
+
+
+
+--------------------LoadBalancer- 
+A good example of that would be to distribute load
+
+across the different web servers in your front-end tier.
+
+
+
+How to get the network policies ? 
+k get networkpolicies

@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: myapp-service
+spec:
+  type: ClusterIP
+  selector:
+    app: myapp
+  ports:
+    - name: app-port
+      port: 80
+      targetPort: 8080
+
+
+A ClusterIP service is the default type of service in Kubernetes. It provides a stable virtual IP address (clusterIP) 
+within the cluster to access a set of pods. The ClusterIP service enables internal communication among different services and pods within the cluster. 
+It does not expose the service outside the cluster.
+
+
+Key characteristics of ClusterIP service:
+A stable virtual IP address (clusterIP) is assigned to the service.
+The service is accessible only from within the cluster.
+By default, the service is not directly reachable from outside the cluster.
+It enables load balancing of traffic to the pods behind the service.
+It is suitable for internal communication between services and pods.
+

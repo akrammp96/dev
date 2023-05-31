@@ -1,0 +1,41 @@
+
+
+an Ingress is an API object that acts as an entry point for external traffic to reach 
+services running within the cluster. 
+
+It provides a way to define rules for routing incoming requests to different services based on 
+hostnames, paths, or other criteria.
+
+
+-- Components of ingress --
+
+
+1- Ingress Controller:
+
+An Ingress Controller is responsible for implementing the rules defined in the Ingress resource. 
+It typically runs as a separate component or service in the cluster and handles the actual traffic routing and load balancing.
+
+
+2- Ingress resource :
+
+The Ingress resource is defined using a YAML manifest and includes rules for routing traffic. It specifies how incoming requests should be mapped 
+to services within the cluster. Each rule consists of a host, one or more paths, and a backend service to forward the requests to.
+
+3- Routing rules: 
+
+Ingress rules allow for flexible traffic routing based on different criteria:
+
++ Host-based routing: You can define rules based on the hostname in the incoming request. 
+For example, you can route requests for app.example.com to a specific service and requests for api.example.com to another service.
+
++ Path-based routing: You can define rules based on the path in the URL of the incoming request. 
+For example, requests to /api can be routed to a backend service handling the API, while requests to /app can be routed to a different service serving the application frontend.
+
++ TLS/SSL Termination: Ingress can also handle TLS/SSL termination, allowing you to configure HTTPS connections for your services. 
+You can define TLS certificates and specify which services should use TLS encryption.
+
+
+4- Load Balancing:
+Ingress Controllers typically handle load balancing across the backend services specified 
+in the Ingress rules. They distribute incoming requests to the appropriate service instances based 
+on the defined routing rules and the load balancing algorithm configured for the Ingress Controller.
